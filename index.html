@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <script src="scripts/index.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <h1 id="title">Rock Paper Scissors (Pokemon Version)</h1>
+    <div id="container">
+        <!--view contains sprites, textbox, & choices-->
+        <div id="view">
+            <div id="images">
+                <img class="scene" src="images/scenes/grass-1.png" alt="">
+                <div class="player-tag-group">
+                    <span class="player-tag-level">1</span>
+                    <span class="player-tag-name">PLAYER</span>
+                    <div class="player-tag-score-outer">
+                        <div class="player-tag-score"></div>
+                    </div>
+                    <img class="player-tag" src="images/UI/player-tag.png" alt="">
+                </div>
+                <img class="choice player-choice" src="images/choices/paper.png" alt="">
+                <img class="player" src="images/pokemons/Pikachu.png" alt="">
+                <div class="computer-tag-group">
+                    <span class="computer-tag-level">1</span>
+                    <span class="computer-tag-name">COMPUTER</span>
+                    <div class="computer-tag-score-outer">
+                        <div class="computer-tag-score"></div>
+                    </div>
+                    <img class="computer-tag" src="images/UI/computer-tag.png" alt="">
+                </div>
+                <img class="choice computer-choice" src="images/choices/paper.png" alt="">
+                <img class="computer" src="images/pokemons/Raikou.png" alt="">
+            </div>
+            <div id="action">
+                <div class="textbox"></div>
+                <div class="choices">
+                    <button id="rockBtn">ROCK</button>
+                    <button id="paperBtn">PAPER</button>
+                    <button id="scissorsBtn">SCISSORS</button>
+                    <button id="statusBtn">STATUS</button>
+                </div>
+            </div>
+        </div>
+        <div class="controller">
+            <div class="control-btns">
+                <button id="mute-btn" class="control-btn"><i class="fas fa-volume-mute"></i></button>
+                <button id="power-btn" class="control-btn"><i class="fa fa-power-off"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+    <!--audio used in game-->
+    <audio id="battle-music" src="audios/battle-with-wild-pokemon.mp3"></audio>
+    <footer>
+        <a href="https://github.com/deepak-s-git">@deepak-s-git</a>
+    </footer>
+</body>
+
+</html>
