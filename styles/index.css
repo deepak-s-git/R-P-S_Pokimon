@@ -115,3 +115,14 @@ body {
         right: 7%;
     }
 }
+
+/* || IMAGES & GAME SCENE */ 
+#images {
+    position: relative;
+    overflow: hidden;
+}
+
+.scene {
+    display: block ;
+    width: 100%;
+}
