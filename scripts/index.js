@@ -145,4 +145,11 @@ function animateFirstChar(msg){
 function animateText(msg) {
     textBox.textContent = "";
     animateFirstChar(msg); 
-}    
+}
+
+
+// score rendering 
+function renderScore() {
+    computerScoreRender.style.width = `${((1-(playerScore / 5)) * 100).toFixed(0)}%`
+    playerScoreRender.style.width = `${((1-(computerScore / 5)) * 100).toFixed(0)}%`
+}
