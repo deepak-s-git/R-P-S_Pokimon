@@ -231,3 +231,20 @@ computerImg.addEventListener("animationend", (e) => {
         computerImg.classList.remove("tie"); 
     }
 })
+
+
+// the choices buttons 
+document.querySelector("#statusBtn").onclick = () => {
+    if (!isGameEnding){
+        showMsg(`Your score: ${playerScore}, Computer score: ${computerScore}`); 
+    }
+}
+document.querySelector("#rockBtn").onclick = () => {
+   playRound("rock"); 
+}
+document.querySelector("#paperBtn").onclick = () => {
+    playRound("paper"); 
+}
+document.querySelector("#scissorsBtn").onclick = () => {
+    playRound("scissors"); 
+}
