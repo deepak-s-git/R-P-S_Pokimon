@@ -177,3 +177,37 @@ battleMusic.addEventListener("ended", () => {
     battleMusic.currentTime = 0; 
     battleMusic.play();
 })
+
+
+// displays text and set player, computer position when start screen animation ends 
+view.addEventListener("animationend", (e) => {
+    if (e.animationName === "open-animation") {
+        view.classList.add("no-screen");
+        view.classList.remove("init");    
+        computerImg.style.right = "7%"; 
+        playerImg.style.left = "-3%"
+        startGame();
+        view.dispatchEvent(animateTextDoneEvent); 
+    }
+})
+
+// animate text from queue 
+view.addEventListener("animatetextdone", () => {
+    if (textQueue.length !== 0) {
+        isAnimating = true; 
+        timer = setTimeout(()=>{animateText(textQueue.shift())}, 1000); 
+    }
+})
+
+// stops choices animation 
+playerChoiceEl.addEventListener("animationend", (e) => {
+    if (e.animationName === "player-shoot"){
+        playerChoiceEl.classList.remove("shoot");
+    }
+})
+
+computerChoiceEl.addEventListener("animationend", (e) => {
+    if (e.animationName === "computer-shoot"){
+        computerChoiceEl.classList.remove("shoot");
+    }
+})
