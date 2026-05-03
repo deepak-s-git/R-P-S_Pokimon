@@ -171,3 +171,9 @@ muteBtn.onclick = () => {
         battleMusic.pause(); 
     }
 }
+
+// loops music 
+battleMusic.addEventListener("ended", () => {
+    battleMusic.currentTime = 0; 
+    battleMusic.play();
+})
