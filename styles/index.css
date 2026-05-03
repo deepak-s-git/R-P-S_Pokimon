@@ -236,3 +236,85 @@ body {
     right: 15%; 
     opacity: 0;
 }
+
+
+/* || PLAYER & COMPUTER ANIMATION */ 
+.player.tie {
+    animation-name: tie; 
+    animation-duration: 1s; 
+}
+
+.computer.tie {
+    animation-name: tie; 
+    animation-duration: 1s; 
+}
+
+.player.hurt {
+    animation-name: hurt; 
+    animation-duration: 1s; 
+}
+
+.computer.hurt {
+    animation-name: hurt; 
+    animation-duration: 1s; 
+}
+
+.player-choice.shoot {
+    animation-name: player-shoot; 
+    animation-duration: 1s; 
+    animation-fill-mode: forwards; 
+}
+
+.computer-choice.shoot {
+    z-index: 2;
+    animation-name: computer-shoot; 
+    animation-duration: 1s; 
+    animation-fill-mode: forwards; 
+}
+
+@keyframes computer-shoot {
+    50% {
+        right: 40%; 
+        opacity: 1; 
+    }
+    100% {
+        right: 40%;
+        opacity: 0; 
+    }
+}
+
+@keyframes player-shoot {
+    50% {
+        bottom: 25%; 
+        opacity: 1; 
+    }
+    100% {
+        bottom: 15%;
+        opacity: 0; 
+    }
+}
+
+@keyframes tie {
+    50% {
+        transform: translateY(-0.5em);
+    }
+    70% {
+        transform: translateY(0.5em);
+    }
+    80% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes hurt {
+    50% {
+        transform: translateY(1em);
+    }
+    70% {
+        transform: rotate(20deg);
+    }
+    80% {
+        transform: scale(1.2);
+        filter: sepia(100%);
+    }
+}
