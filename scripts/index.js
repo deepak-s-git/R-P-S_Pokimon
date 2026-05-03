@@ -153,3 +153,21 @@ function renderScore() {
     computerScoreRender.style.width = `${((1-(playerScore / 5)) * 100).toFixed(0)}%`
     playerScoreRender.style.width = `${((1-(computerScore / 5)) * 100).toFixed(0)}%`
 }
+
+
+// EVENT LISTENERS 
+// powerBtn: start / restart game 
+powerBtn.onclick = () => {
+    isPlaying = !isPlaying; 
+    (isPlaying) ? gameInit() : gameEnd();
+}
+// muteBtn: mute / play
+muteBtn.onclick = () => {
+    muteBtnIcon.classList.toggle("fa-volume-mute")
+    muteBtnIcon.classList.toggle("fa-volume-up")
+    if (battleMusic.paused) {
+        battleMusic.play(); 
+    } else {
+        battleMusic.pause(); 
+    }
+}
