@@ -56,3 +56,63 @@ function gameEnd() {
     playerImg.style.left = "-35%"
     textBox.textContent = ""; 
 }
+
+
+// RPS game logic 
+function computerPlay(){
+    const CHOICES = ["rock", "paper", "scissors"]; 
+    return CHOICES[Math.floor(Math.random() * 3)]; 
+}
+
+function getResult(playerSelection, computerSelection) {
+    playerSelection = playerSelection; 
+    computerSelection = computerSelection; 
+    if (playerSelection === computerSelection) {
+        return (`A Tie! ${playerSelection} and ${computerSelection}`); 
+    } else if (playerSelection === "rock" && computerSelection === "scissors" ||
+        playerSelection === "scissors" && computerSelection === "paper" || 
+        playerSelection === "paper" && computerSelection === "rock") {
+            return (`You Win! ${playerSelection} beats ${computerSelection}`); 
+        } else {
+            return (`You Lose! ${computerSelection} beats ${playerSelection}`); 
+        }
+}
+
+function checkGameOver() {
+    if (playerScore === 5 || computerScore === 5) {
+        if (playerScore === 5) {
+            isGameEnding = true; 
+            timer = setTimeout(()=>{gameEnd()}, 5000); 
+            return "You Win! Thanks for playing"; 
+        }
+        else {
+            isGameEnding = true; 
+            timer = setTimeout(()=>{gameEnd()}, 5000); 
+            return "You Lose! Thanks for playing"; 
+        }
+    }
+    return ''; 
+}
+
+function playRound(playerSelection) {
+    if (!isAnimating && !isGameEnding) {     
+        let computerSelection = computerPlay(); 
+        playerChoiceEl.src=`images/choices/${playerSelection}.png`;
+        playerChoiceEl.classList.add("shoot");
+        computerChoiceEl.src=`images/choices/${computerSelection}.png`;
+        computerChoiceEl.classList.add("shoot");
+        let result = getResult(playerSelection, computerSelection); 
+        if (result.indexOf("Win") != -1) {
+            playerScore++; 
+            computerImg.classList.add("hurt");
+        } else if (result.indexOf("Lose") != -1) {
+            computerScore++; 
+            playerImg.classList.add("hurt");
+        } else {
+            computerImg.classList.add("tie"); 
+            playerImg.classList.add("tie"); 
+        }
+        renderScore(playerScore, computerScore); 
+        showMsg(result, checkGameOver()); 
+    }
+}
