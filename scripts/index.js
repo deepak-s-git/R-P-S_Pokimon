@@ -116,3 +116,33 @@ function playRound(playerSelection) {
         showMsg(result, checkGameOver()); 
     }
 }
+
+// Text animation 
+function showMsg(...msgs) {
+    if (!isAnimating) {
+        msgs.forEach(msg => {
+            if (msg !== ''){
+                textQueue.push(msg); 
+            }
+        })
+        view.dispatchEvent(animateTextDoneEvent); 
+
+    }
+}
+
+function animateFirstChar(msg){
+    if (msg !== '') {
+        let charEl = document.createElement("span"); 
+        charEl.textContent = msg[0]; 
+        textBox.appendChild(charEl); 
+        timer = setTimeout(()=>{animateFirstChar(msg.slice(1));}, 20); 
+    } else {
+        isAnimating = false; 
+        view.dispatchEvent(animateTextDoneEvent);
+    }    
+}    
+
+function animateText(msg) {
+    textBox.textContent = "";
+    animateFirstChar(msg); 
+}    
