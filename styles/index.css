@@ -1,0 +1,22 @@
+@import "resets.css";
+@import url('https://fonts.cdnfonts.com/css/aux-dotbitc');
+
+body {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column;
+    background: #cacaca;
+}
+
+* {
+    font-family: 'AuX DotBitC', sans-serif;
+    font-size: min(2vw, 15px);
+}
+
+#title {
+    text-align: center;
+    font-size: min(3vw, 30px);
+    margin-bottom: 2em;
+    padding: 0;
+}
