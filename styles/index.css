@@ -65,3 +65,53 @@ body {
 #view.no-screen::before {
     display: none;
 }
+
+/* || OPEN ANIMATION */ 
+#view.init::before {
+    content: ""; 
+    animation-name: open-animation;
+    animation-iteration-count: 2;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+}
+
+#view.init .player {
+    animation-name: player-move-in;
+    animation-duration: 1s;
+    animation-delay: 0.5s; 
+    animation-timing-function: ease-out;
+    animation-fill-mode:forwards;
+}
+
+#view.init .computer {
+    animation-name: computer-move-in;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode:forwards;
+}
+
+@keyframes open-animation {
+    50% {
+        background: black; 
+        opacity: 0.8; 
+    }
+    75% {
+        opacity: 0.9;
+    }
+    100% {
+       opacity: 0;
+    }
+}
+
+@keyframes player-move-in {
+    100% {
+        left: -3%;
+    }
+}
+
+@keyframes computer-move-in {
+    100% {
+        right: 7%;
+    }
+}
