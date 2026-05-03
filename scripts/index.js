@@ -211,3 +211,23 @@ computerChoiceEl.addEventListener("animationend", (e) => {
         computerChoiceEl.classList.remove("shoot");
     }
 })
+
+
+// stops player & computer animation on "hurt" or "tie" 
+playerImg.addEventListener("animationend", (e) => {
+    if (e.animationName === "hurt"){
+        playerImg.classList.remove("hurt");
+    }
+    if (e.animationName === "tie") {
+        playerImg.classList.remove("tie"); 
+    }
+})
+
+computerImg.addEventListener("animationend", (e) => {
+    if (e.animationName === "hurt"){
+        computerImg.classList.remove("hurt");
+    }
+    if (e.animationName === "tie") {
+        computerImg.classList.remove("tie"); 
+    }
+})
