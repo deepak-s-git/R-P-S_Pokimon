@@ -41,6 +41,7 @@ function startGame() {
     textQueue.push("Choose from the buttons to the right. (click STATUS to see the current score"); 
 }
 
+
 // resets variables and end game 
 function gameEnd() {
     isPlaying = false;
