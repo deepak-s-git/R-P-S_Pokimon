@@ -27,3 +27,31 @@ let playerScore = initPlayerScore, computerScore = initComputerScore;
 let textQueue = []; 
 let animateTextDoneEvent = new CustomEvent("animatetextdone", {
 }); 
+
+
+// initializes game
+function gameInit() {
+    renderScore()
+    view.classList.add("init"); 
+}
+
+// text prompt when game starts 
+function startGame() {
+    textQueue.push("Welcome to Rock Paper Scissors (Pokemon Version), first to 5 wins"); 
+    textQueue.push("Choose from the buttons to the right. (click STATUS to see the current score"); 
+}
+
+// resets variables and end game 
+function gameEnd() {
+    isPlaying = false;
+    isGameEnding = false
+    textQueue = [];
+    clearTimeout(timer)
+    playerScore = initPlayerScore; 
+    computerScore = initComputerScore;
+    view.classList.remove("init");
+    view.classList.remove("no-screen"); 
+    computerImg.style.right = "-35%"; 
+    playerImg.style.left = "-35%"
+    textBox.textContent = ""; 
+}
