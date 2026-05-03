@@ -204,3 +204,35 @@ body {
     background: rgb(133, 218, 175);
     position: relative; 
 }
+
+/* || PLAYER & COMPUTER & CHOICES SPRITES */ 
+.player {
+    position: absolute; 
+    bottom: -40%;
+    left: -35%;
+    width: 54%;
+}
+
+.computer {
+    position: absolute; 
+    top:15%;
+    right: -35%;
+    width: 33%;
+}
+
+.choice {
+    position: absolute;
+    width: 15%;
+}
+
+.player-choice {
+    bottom: -10%; 
+    left: 25%;
+    opacity: 0;
+}
+
+.computer-choice {
+    top: 30%; 
+    right: 15%; 
+    opacity: 0;
+}
