@@ -2,6 +2,10 @@
 
 A simple Rock Paper Scissors game made using HTML, CSS, and JavaScript with a Pokemon-style battle interface.
 
+## Live Preview
+
+[Click Here to Play](https://deepak-s-git.github.io/R-P-S_Pokimon/)
+
 ## Features
 
 - Rock, Paper, Scissors gameplay
