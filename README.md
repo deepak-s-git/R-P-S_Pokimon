@@ -23,12 +23,14 @@ A simple Rock Paper Scissors game made using HTML, CSS, and JavaScript with a Po
 
 ## Project Structure
 
+```text
 project/
 ├── index.html
 ├── styles/
 ├── scripts/
 ├── images/
 └── audios/
+```
 
 ## How to Run
 
