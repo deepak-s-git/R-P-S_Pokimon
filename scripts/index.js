@@ -30,6 +30,26 @@ let textQueue = [];
 let animateTextDoneEvent = new CustomEvent("animatetextdone", {
 }); 
 
+let playerHistory = [];
+let transitions = {
+    rock: { rock: 0, paper: 0, scissors: 0 },
+    paper: { rock: 0, paper: 0, scissors: 0 },
+    scissors: { rock: 0, paper: 0, scissors: 0 }
+};
+const difficultySelect = document.querySelector("#difficulty-select");
+
+function loadDifficulty() {
+    const savedDifficulty = localStorage.getItem("pokimonDifficulty") || "medium";
+    difficultySelect.value = savedDifficulty;
+}
+difficultySelect.addEventListener("change", (e) => {
+    localStorage.setItem("pokimonDifficulty", e.target.value);
+    if (isPlaying && !isGameEnding) {
+        showMsg(`Difficulty changed to ${e.target.value.toUpperCase()}`);
+    }
+});
+loadDifficulty();
+
 
 // THEME TOGGLE FUNCTIONS
 function applyTheme(theme) {
@@ -69,8 +89,9 @@ function gameInit() {
 
 // text prompt when game starts 
 function startGame() {
-    textQueue.push("Welcome to Rock Paper Scissors (Pokemon Version), first to 5 wins"); 
-    textQueue.push("Choose from the buttons to the right. (click STATUS to see the current score"); 
+    const diff = difficultySelect.value.toUpperCase();
+    textQueue.push(`Welcome to Rock Paper Scissors (Pokemon Version). Mode: ${diff}. First to 5 wins!`); 
+    textQueue.push("Choose from the buttons to the right. (click STATUS to see the current score)"); 
 }
 
 
@@ -82,6 +103,12 @@ function gameEnd() {
     clearTimeout(timer)
     playerScore = initPlayerScore; 
     computerScore = initComputerScore;
+    playerHistory = [];
+    transitions = {
+        rock: { rock: 0, paper: 0, scissors: 0 },
+        paper: { rock: 0, paper: 0, scissors: 0 },
+        scissors: { rock: 0, paper: 0, scissors: 0 }
+    };
     view.classList.remove("init");
     view.classList.remove("no-screen"); 
     computerImg.style.right = "-35%"; 
@@ -90,10 +117,68 @@ function gameEnd() {
 }
 
 
-// RPS game logic 
-function computerPlay(){
+function getCounterMove(move) {
+    if (move === "rock") return "paper";
+    if (move === "paper") return "scissors";
+    if (move === "scissors") return "rock";
+    return getRandomMove();
+}
+
+function getRandomMove() {
     const CHOICES = ["rock", "paper", "scissors"]; 
     return CHOICES[Math.floor(Math.random() * 3)]; 
+}
+
+// RPS game logic 
+function computerPlay() {
+    const difficulty = difficultySelect.value;
+    if (difficulty === "easy" || playerHistory.length === 0) {
+        return getRandomMove();
+    }
+
+    let lastMove = playerHistory[playerHistory.length - 1];
+
+    if (difficulty === "medium") {
+        if (Math.random() < 0.4) {
+            return getCounterMove(lastMove);
+        }
+        return getRandomMove();
+    }
+
+    if (difficulty === "hard") {
+        let possibleNextMoves = transitions[lastMove];
+        let predictedMove = "rock";
+        let maxCount = -1;
+        
+        for (let move in possibleNextMoves) {
+            if (possibleNextMoves[move] > maxCount) {
+                maxCount = possibleNextMoves[move];
+                predictedMove = move;
+            }
+        }
+        
+        if (maxCount === 0) {
+            let moveCounts = { rock: 0, paper: 0, scissors: 0 };
+            playerHistory.forEach(m => moveCounts[m]++);
+            let freqMove = "rock";
+            let maxFreq = -1;
+            for (let m in moveCounts) {
+                if (moveCounts[m] > maxFreq) {
+                    maxFreq = moveCounts[m];
+                    freqMove = m;
+                }
+            }
+            return getCounterMove(freqMove);
+        }
+
+        if (Math.random() < 0.8) {
+            return getCounterMove(predictedMove);
+        } else {
+            return getRandomMove();
+        }
+    }
+    
+    return getRandomMove();
 }
 
 function getResult(playerSelection, computerSelection) {
@@ -129,6 +214,13 @@ function checkGameOver() {
 function playRound(playerSelection) {
     if (!isAnimating && !isGameEnding) {     
         let computerSelection = computerPlay(); 
+        
+        if (playerHistory.length > 0) {
+            let lastMove = playerHistory[playerHistory.length - 1];
+            transitions[lastMove][playerSelection]++;
+        }
+        playerHistory.push(playerSelection);
+
         playerChoiceEl.src=`images/choices/${playerSelection}.png`;
         playerChoiceEl.classList.add("shoot");
         computerChoiceEl.src=`images/choices/${computerSelection}.png`;
