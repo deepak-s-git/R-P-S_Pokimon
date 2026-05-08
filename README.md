@@ -10,10 +10,13 @@ A simple Rock Paper Scissors game made using HTML, CSS, and JavaScript with a Po
 
 - Rock, Paper, Scissors gameplay
 - Pokemon-themed UI
+- Three difficulty modes (Easy, Medium, Hard) with adaptive AI
+- Retro Pokémon-style cinematic boot sequence
+- Light and Dark mode themes with preserved retro UI visibility
 - Background music and sound
 - Player vs Computer
 - Score display
-- Mute and power buttons
+- Clean UI controls (Mute, Theme Toggle, Power, Difficulty Selector)
 
 ## Technologies Used
 
