@@ -1,6 +1,8 @@
 const powerBtn = document.querySelector("#power-btn"); 
 const muteBtn = document.querySelector("#mute-btn"); 
 const muteBtnIcon = document.querySelector("#mute-btn i")
+const themeBtn = document.querySelector("#theme-btn");
+const themeBtnIcon = document.querySelector("#theme-btn i");
 const battleMusic = document.querySelector("#battle-music"); 
 
 const view = document.querySelector("#view");
@@ -27,6 +29,36 @@ let playerScore = initPlayerScore, computerScore = initComputerScore;
 let textQueue = []; 
 let animateTextDoneEvent = new CustomEvent("animatetextdone", {
 }); 
+
+
+// THEME TOGGLE FUNCTIONS
+function applyTheme(theme) {
+    document.body.classList.remove("theme-light", "theme-dark");
+    document.body.classList.add(`theme-${theme}`);
+
+    if (theme === "dark") {
+        themeBtnIcon.classList.remove("fa-moon");
+        themeBtnIcon.classList.add("fa-sun");
+    } else {
+        themeBtnIcon.classList.remove("fa-sun");
+        themeBtnIcon.classList.add("fa-moon");
+    }
+
+    localStorage.setItem("pokimonTheme", theme);
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem("pokimonTheme") || "light";
+    applyTheme(savedTheme);
+}
+
+themeBtn.onclick = () => {
+    const nextTheme = document.body.classList.contains("theme-dark") ? "light" : "dark";
+    applyTheme(nextTheme);
+};
+
+// Load theme immediately (script is deferred, so DOM is ready)
+loadTheme();
 
 
 // initializes game
