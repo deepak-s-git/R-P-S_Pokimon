@@ -483,6 +483,22 @@ body.theme-dark::before {
     background: var(--control-btn-hover);
 }
 
+.difficulty-select {
+    background: var(--control-btn-bg);
+    color: var(--text-main);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.difficulty-select:hover {
+    background: var(--control-btn-hover);
+}
+
 /* || FOOTER */ 
 footer {
     margin-top: 2em;
