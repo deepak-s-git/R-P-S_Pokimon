@@ -149,6 +149,11 @@ body.theme-dark::before {
     display: none;
 }
 
+#view.intro-playing::before {
+    content: "";
+    background: black;
+}
+
 /* || OPEN ANIMATION */ 
 #view.init::before {
     content: ""; 
@@ -520,4 +525,103 @@ footer {
     transition: color 0.4s ease;
     position: relative;
     z-index: 1;
+}
+
+/* || INTRO SCREEN */
+#intro-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#intro-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro-title {
+    color: #fff;
+    font-size: min(3vw, 24px);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+#intro-screen.active .intro-title {
+    animation: fadeSlideDown 0.8s ease 0.2s forwards;
+}
+
+.intro-subtitle {
+    color: #ffcb05;
+    text-shadow: 2px 2px 0px #3c5aa6;
+    font-size: min(2vw, 16px);
+    margin: 10px 0 30px 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#intro-screen.active .intro-subtitle {
+    animation: fadeSlideUp 0.8s ease 0.6s forwards;
+}
+
+.intro-sprites {
+    display: flex;
+    column-gap: 15px;
+    margin-bottom: 30px;
+}
+
+.intro-sprite {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+#intro-screen.active .intro-sprite:nth-child(1) { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards; }
+#intro-screen.active .intro-sprite:nth-child(2) { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards; }
+#intro-screen.active .intro-sprite:nth-child(3) { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.8s forwards; }
+
+.intro-blinking {
+    color: #fff;
+    font-size: min(1.5vw, 12px);
+    opacity: 0;
+}
+
+#intro-screen.active .intro-blinking {
+    animation: introBlink 1s step-end infinite, fadeIn 0.5s ease 2.5s forwards;
+}
+
+@keyframes fadeSlideDown {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+@keyframes introBlink {
+    50% { opacity: 0; }
 }

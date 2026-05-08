@@ -81,10 +81,28 @@ themeBtn.onclick = () => {
 loadTheme();
 
 
+let introTimer = null;
+
 // initializes game
 function gameInit() {
-    renderScore()
-    view.classList.add("init"); 
+    renderScore();
+    
+    // Start intro sequence
+    view.classList.add("intro-playing");
+    const introScreen = document.getElementById("intro-screen");
+    introScreen.classList.add("active");
+    
+    introTimer = setTimeout(() => {
+        if (!isPlaying) return; // if powered off during intro
+        introScreen.classList.remove("active");
+        
+        // After fade out, trigger main game animation
+        setTimeout(() => {
+            if (!isPlaying) return;
+            view.classList.remove("intro-playing");
+            view.classList.add("init"); 
+        }, 500);
+    }, 4000); // Intro length
 }
 
 // text prompt when game starts 
@@ -98,9 +116,10 @@ function startGame() {
 // resets variables and end game 
 function gameEnd() {
     isPlaying = false;
-    isGameEnding = false
+    isGameEnding = false;
     textQueue = [];
-    clearTimeout(timer)
+    clearTimeout(timer);
+    clearTimeout(introTimer);
     playerScore = initPlayerScore; 
     computerScore = initComputerScore;
     playerHistory = [];
@@ -109,6 +128,9 @@ function gameEnd() {
         paper: { rock: 0, paper: 0, scissors: 0 },
         scissors: { rock: 0, paper: 0, scissors: 0 }
     };
+    
+    document.getElementById("intro-screen").classList.remove("active");
+    view.classList.remove("intro-playing");
     view.classList.remove("init");
     view.classList.remove("no-screen"); 
     computerImg.style.right = "-35%"; 
