@@ -220,11 +220,13 @@ body.theme-dark::before {
     right: 5%;
     bottom: 3%;
     width: 30%;
+    color: #111;
 }
 .player-tag-level {
     position: absolute; 
     top: 28%;
     right: 12%;
+    z-index: 1;
 }
 .player-tag-score-outer {
     width: 46%; 
@@ -235,6 +237,7 @@ body.theme-dark::before {
     top: 45%; 
     right: 10%;
     border-radius: 1em;
+    z-index: 1;
 }
 .player-tag-score {
     width: 100%; 
@@ -247,27 +250,37 @@ body.theme-dark::before {
 .player-tag-name {
     position: absolute; 
     top: 28%;
-    left: 17%;
+    right: 32%;
+    z-index: 1;
 }
 
 .computer-tag {
     width: 100%;
+}
+
+/* Enhance tag visibility in dark mode */
+body.theme-dark .player-tag,
+body.theme-dark .computer-tag {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6)) brightness(1.15);
 }
 .computer-tag-group {
     position: absolute; 
     width: 32%;
     top: 5%; 
     left: 10%;
+    color: #111;
 }
 .computer-tag-level {
     position: absolute; 
     top: 22%; 
     right: 20%;
+    z-index: 1;
 }
 .computer-tag-name {
     position: absolute; 
     top: 22%; 
-    left: 10%;
+    right: 35%;
+    z-index: 1;
 }
 .computer-tag-score-outer {
     width: 46%; 
@@ -278,6 +291,7 @@ body.theme-dark::before {
     background: gray;
     right: 18%;
     border-radius: 1em;
+    z-index: 1;
 }
 .computer-tag-score {
     width: 100%; 
